@@ -30,6 +30,10 @@ app.get("/notes", (req, res) => {
 app.get('/notes/:id',(req,res) => {
   const id = +req.params.id;
   const note = notes.find(note => note.id === id)
+  if(!note){
+    res.status(404).render("notes404.ejs");
+    return
+  }
   res.render("note.ejs",{note})
 })
 app.listen(port, () => {
