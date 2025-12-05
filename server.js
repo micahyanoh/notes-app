@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 app.set("view engine", "ejs");
 app.use(express.static("public"))
+app.use(express.urlencoded({extended:true}))
 
 app.get("/", (req, res) => {
   
@@ -27,6 +28,12 @@ app.get('/notes/:id',(req,res) => {
 
 app.get("/createNote",(req,res)=>{
   res.render("createNote.ejs")
+})
+
+app.post("/notes",(req,res)=>{
+const data = req.body
+database.addNote(data);
+res.redirect('/notes')
 })
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

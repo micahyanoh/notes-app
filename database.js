@@ -26,3 +26,15 @@ function getNote(id){
     return notes.find(note => note.id === id)
 }
 exports.getNote = getNote
+
+
+function addNote(note){
+notes.push({
+        id:notes.length+1,
+    timestamp:Date.now(),
+    ...note,
+
+})
+
+}
+exports.addNote =addNote
